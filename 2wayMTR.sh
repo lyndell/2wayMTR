@@ -20,6 +20,7 @@ set -u # exit over uninitialised variables
 IP1=lpic.Lyndell.NET
 IP2=zike.Lyndell.NET
 
-ssh lpic "mtr -i.2 -r -c100  $IP2"         # root user
+ssh $IP1 "mtr -i.2 -r -c100  $IP2"         # root user
+ssh $IP2 "mtr -i.2 -r -c100  $IP1"         # root user
 
 
