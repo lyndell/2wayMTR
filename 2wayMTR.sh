@@ -18,8 +18,7 @@ set -x # show code during execution
 set +x # do NOT show code during execution
 set -u # exit over uninitialised variables
 
-IP1=lpic.Lyndell.NET
-IP2=169.53.8.6
+source ./2wayMTR.cfg
 
 echo -e "\n\n"
 echo -e "FROM: $IP1  to  $IP2 .  \n"
