@@ -14,21 +14,27 @@
 #
 #
 
-set -x # show code during execution
 set +x # do NOT show code during execution
+set -x # show code during execution
 set -u # exit over uninitialised variables
 
 source ./2wayMTR.cfg
+TIME=`date +%s`
+FILE="MTR_${IP1}-to-${IP2}.${TIME}.txt"
 
 echo -e "\n\n"
-echo -e "FROM: $IP1  to  $IP2 .  \n"
+echo -e "FROM: $IP1  to  $IP2 .  \n" >> $FILE
 
-ssh $IP1 "mtr -i.2 -r -c10  $IP2"         # root user
+#FILE1="MTR_${IP1}-to-${IP2}.${TIME}.txt"
+echo -e "`date` \n`date -u`"      >> $FILE
+ssh $IP1 "mtr -i.2 -r -c10  $IP2" >> $FILE         # root user
 
-echo -e "\n\n"
-echo -e "FROM: $IP2  to  $IP1 .  \n"
+echo -e "\n\n"                       >> $FILE
+echo -e "FROM: $IP2  to  $IP1 .  \n" >> $FILE
 
-ssh $IP2 "mtr -i.2 -r -c10  $IP1"         # root user
+#FILE2="MTR_${IP2}-to-${IP1}.${TIME}.txt"
+echo -e "`date` \n`date -u`" >> $FILE
+ssh $IP2 "mtr -i.2 -r -c10  $IP1" >> $FILE         # root user
 
 echo -e "\n\n"
 
