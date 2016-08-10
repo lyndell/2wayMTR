@@ -20,7 +20,7 @@ set -u # exit over uninitialised variables
 
 source ./2wayMTR.cfg
 TIME=`date +%s`
-FILE="MTR_${IP1}-to-${IP2}.${TIME}.txt"
+FILE="MTR_${IP1}-${IP2}.${TIME}.txt"
 
 echo -e "\n\n"
 echo -e "FROM: $IP1  to  $IP2 .  \n" >> $FILE
@@ -38,5 +38,5 @@ ssh $IP2 "mtr -i.2 -r -c10  $IP1" >> $FILE         # root user
 
 echo -e "\n\n"
 
-
+which open && open $FILE
 
